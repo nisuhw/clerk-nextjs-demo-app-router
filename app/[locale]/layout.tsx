@@ -13,6 +13,8 @@ import { Docs, Github, Times } from "./icons";
 import { Twitter } from "./icons";
 import { Discord } from "./icons";
 import { Metadata } from "next";
+import { frFR,enUS } from "@clerk/localizations";
+import { idID } from "./id-ID";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,12 +27,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  params: {locale}
 }: {
   children: React.ReactNode;
+  params: {locale: string};
 }) {
   return (
-    <html lang="en">
+    <html lang={locale}>
       <ClerkProvider
+        localization={locale=='fr'?idID:enUS}
         appearance={{
           variables: { colorPrimary: "#000000" },
           elements: {
